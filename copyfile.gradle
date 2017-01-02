@@ -1,0 +1,18 @@
+import org.apache.tools.ant.filters.FixCrLfFilter
+import org.apache.tools.ant.filters.ReplaceTokens
+task clean{
+	//doLast{
+		delete('E:/temp/src.txt')
+	//}
+}
+task myCopy(type: Copy){
+	//doFirst{
+		
+			from ('E:/hqin/build/gradle/copyfile/src.txt'){
+				filter{String line -> line.replaceAll('abc', 'cdg')}
+			}
+		
+			into 'E:/temp'
+			
+	//}
+}
