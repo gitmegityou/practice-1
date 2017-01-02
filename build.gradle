@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'ear'
+//mainClassName = 'HelloWorld'
+sourceSets {
+    main {
+        java {
+            srcDirs = ['JavaSource/QTC/com']
+        }
+	}
+}
+
+jar{
+
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'HelloWorld'
+    )
+  }
+}
