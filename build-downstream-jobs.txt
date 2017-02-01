@@ -1,0 +1,33 @@
+In the PT job:
+1. Add one build step in the PT (!) build as:
+a. Type: Execute Windows batch command
+b. In the Command text box, copy this line to:
+echo ver=%BUILD_ID% > c:\ptver.txt
+In the SIT job:
+2. Check Prepare an environment for the run
+a. Check Keep Jenkins Build Variables
+b. Check Keep Jenkins Environment Variables
+c. In the Properties File Path text box, copy this to:
+c:\ptver.txt
+3. In your SIT build project, in the Build Triggers section,
+a. Click [ScriptTrigger] - Poll with a shell or batch script
+b. In the Schedule text box, enter
+7 * * 1-5
+13 * * 1-5
+2
+c. in the Trigger Script text box, copy the code below to:
+if exist c:\ptver.txt (
+exit 0
+) else (
+exit 1
+)
+d. Exit code: 0
+4. Change the Repository URL to:
+https://svn/accenture/progreg/program_registration/tags/EBS/pt/${ver}
+5. Add a Post Steps:
+Execute Windows batch command
+Command:
+Del c:\ptver.txt
+That’s it. No any other changes is necessary.
+Note that Del c:\ptver.txt is important.
+I have tested this, and it works.

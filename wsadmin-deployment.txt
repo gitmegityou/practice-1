@@ -1,0 +1,1 @@
+wsadmin.sh -conntype SOAP -host eagnmnmed28e -port 8879 -user xxxx -password xxxxx -lang jython -c "AdminApp.install('/opt/WebSphere/home/wsadmin/epobol.15.00.402.ear', ['-update', '-appname', 'epobolEAR', '-usedefaultbindings', '-target', 'pobol_dev_28e'])"
